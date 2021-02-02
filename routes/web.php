@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,8 +23,15 @@ Route::get('/{type}',function($type){
 Route::get('/{type}/add_user',function($type) {
      return view('admin.add_user',['type'=>$type]);
 })->name('admin_add_user');
-Route::get('/{type}/show_user',function($type) {
-    return view('admin.show_user',['type'=>$type]);
-})->name('admin_show_user');
+Route::get('/{type}/show_user',[UserController::class,'showUser'])->name('admin_show_user');
+
+// Route::get('/{type}/show_user',[UserController::class,'showUser'])->name('admin_show_user');
 Route::post('/store/user',[UserController::class,'store'])->name('store.user');
+
+//user module
+Route::get('/{type}/add_item',function($type){
+    return view('user.add_item',['type'=>$type]);
+})->name('user_add_item');
+Route::post('/additem',[ItemController::class,'store'])->name('store.item');
+
 

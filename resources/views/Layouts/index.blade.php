@@ -31,7 +31,7 @@
       <a class="nav-link" href="{{route('home')}}">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Add Item</a>
+      <a class="nav-link" href="{{route('user_add_item','user')}}">Add Item</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Show Item</a>
@@ -57,6 +57,8 @@
   </ul>
 </nav>
 @endif
-@yield('content')       
+@yield('content')
+{{--this is parent blade so which content comes from child blade using section is 
+show here using yield--}}       
     </body>
 </html>
