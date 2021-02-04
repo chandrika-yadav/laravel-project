@@ -8,7 +8,7 @@ class ItemController extends Controller
 {
     //
     public function store(Request $request){
-            dd($request);
+            //dd($request);
             $validatedData = $request->validate([
                 'Itemname' => ['required'],
                 'Quantity' => ['required'],
@@ -16,7 +16,8 @@ class ItemController extends Controller
                 'Description' => ['required'],
                 'Image' => ['required'],
             ]);
-            $request->file('Image')->store('uploads');
+            $request->file('Image')->store('uploads');  
+                                                    //for store image in uploads folder
             foreach($request->all() as $key=>$value)
             {
                 echo $key ."=>" .$value;
