@@ -8,7 +8,7 @@ class ItemController extends Controller
 {
     //
     public function store(Request $request){
-            //dd($request);
+
             $validatedData = $request->validate([
                 'Itemname' => ['required'],
                 'Quantity' => ['required'],
@@ -16,12 +16,19 @@ class ItemController extends Controller
                 'Description' => ['required'],
                 'Image' => ['required'],
             ]);
-            $request->file('Image')->store('uploads');  
+            $file = $request->file('Image')->store('uploads');
                                                     //for store image in uploads folder
+            session(['item.img'=>$file]);
+
             foreach($request->all() as $key=>$value)
             {
                 echo $key ."=>" .$value;
             }
             return back()->with("message","Form Submitted");
-    } 
+    }
+
+    public function session()
+    {
+
+    }
 }
