@@ -66,22 +66,24 @@ Route::get('/', function () {
 
 Route::get('/{type}/add_user',function($type) {
      return view('admin.add_user',['type'=>$type]);
-})->name('admin_add_user');
-Route::get('/{type}/show_user',[UserController::class,'showUser'])->name('admin_show_user');
+})->name('admin_add_user')->middleware('role:admin');
+
+Route::get('/{type}/show_user',[UserController::class,'showUser'])->name('admin_show_user')->middleware('role:admin');
 
 // Route::get('/{type}/show_user',[UserController::class,'showUser'])->name('admin_show_user');
-Route::post('/store/user',[UserController::class,'store'])->name('store.user');
+Route::post('/store/user',[UserController::class,'store'])->name('store.user')->middleware('role:admin');;
 
 //user module
 Route::get('/{type}/add_item',function($type){
     return view('user.add_item',['type'=>$type]);
-})->name('user_add_item');
+})->name('user_add_item')->middleware('role:user');
 
-Route::post('/additem',[ItemController::class,'store'])->name('store.item');
+Route::post('/additem',[ItemController::class,'store'])->name('store.item')->middleware('role:user');
+
 Route::get('/{type}',function($type){
+    session(['userType'=>$type]);
     return view('Layouts.index',['type'=>$type]);
 })->name('index');
-
 
 
 

@@ -22,8 +22,11 @@
         </style>
     </head>
     <body class="antialiased">
+
+        @dump(asset('style.css'))
+        @dump(url('/').'/style.css')
       @if($type=="user")
-            
+
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <ul class="navbar-nav">
@@ -58,7 +61,7 @@
 </nav>
 @endif
 @yield('content')
-{{--this is parent blade so which content comes from child blade using section is 
-show here using yield--}}       
+{{--this is parent blade so which content comes from child blade using section is
+show here using yield--}}
     </body>
 </html>
